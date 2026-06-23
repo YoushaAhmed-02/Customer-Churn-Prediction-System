@@ -3,45 +3,38 @@ import pandas as pd
 import joblib
 import plotly.express as px
 
-# =========================
+
 # PAGE CONFIG
-# =========================
 st.set_page_config(
     page_title="Customer Churn Dashboard",
     page_icon="📊",
     layout="wide"
 )
 
-# =========================
+
 # LOAD MODEL
-# =========================
 model = joblib.load("models/model.pkl")
 encoders = joblib.load("models/encoders.pkl")
 
-# =========================
-# CLEAN CSS (NO SIDEBAR BREAK)
-# =========================
+
+# CSS 
 st.markdown("""
 <style>
 
-/* Page background */
 .stApp {
     background: linear-gradient(135deg,#0f172a,#111827,#1e293b);
 }
 
-/* Remove top padding */
 .block-container{
     padding-top: 1rem;
     padding-left: 2rem;
     padding-right: 2rem;
 }
 
-/* Hide Streamlit default header only */
 header {
     visibility: hidden;
 }
 
-/* MAIN HEADER */
 .main-header{
     background: linear-gradient(90deg,#2563eb,#06b6d4,#7c3aed);
     padding: 25px;
@@ -51,7 +44,6 @@ header {
     color: white;
 }
 
-/* KPI CARDS */
 .kpi-card{
     background: linear-gradient(145deg,#111827,#1e293b);
     border-radius: 16px;
@@ -76,13 +68,10 @@ header {
     margin-top:5px;
 }
 
-/* SIDEBAR FIX (IMPORTANT) */
 [data-testid="stSidebar"]{
     background-color:#0b1220;
 }
 
-
-/* Buttons */
 .stButton>button{
     width:100%;
     background:linear-gradient(90deg,#2563eb,#06b6d4);
@@ -97,7 +86,6 @@ header {
     transform:scale(1.02);
 }
 
-/* Metric boxes */
 [data-testid="metric-container"]{
     background:#1e293b;
     border-radius:10px;
@@ -105,7 +93,6 @@ header {
     border:1px solid #334155;
 }
 
-/* Text color */
 h1,h2,h3,h4,h5,h6,p,label{
     color:white !important;
 }
@@ -113,9 +100,8 @@ h1,h2,h3,h4,h5,h6,p,label{
 </style>
 """, unsafe_allow_html=True)
 
-# =========================
+
 # HEADER
-# =========================
 st.markdown("""
 <div class="main-header">
     <h1>📊 Customer Churn Intelligence Dashboard</h1>
@@ -123,9 +109,8 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-# =========================
+
 # KPI CARDS
-# =========================
 c1, c2, c3, c4 = st.columns(4)
 
 with c1:
@@ -162,9 +147,7 @@ with c4:
 
 st.markdown("---")
 
-# =========================
-# SIDEBAR INPUTS 
-# =========================
+# INPUTS 
 st.sidebar.title("⚙️ Customer Inputs")
 
 tenure = st.sidebar.slider(
@@ -203,14 +186,11 @@ payment = st.sidebar.selectbox(
     encoders["PaymentMethod"].classes_
 )
 
-# =========================
 # MAIN LAYOUT
-# =========================
 col1, col2 = st.columns([1, 1.5])
 
-# =========================
+
 # PREDICTION
-# =========================
 with col1:
 
     st.subheader("🔮 Prediction Panel")
@@ -240,9 +220,8 @@ with col1:
 
         st.metric("Confidence Score", f"{confidence:.2f}%")
 
-# =========================
+
 # CHART
-# =========================
 with col2:
 
     st.subheader("📈 Feature Importance")
@@ -276,9 +255,8 @@ with col2:
 
     st.plotly_chart(fig, use_container_width=True)
 
-# =========================
+
 # DATA TABLE
-# =========================
 st.markdown("---")
 
 st.subheader("📋 Input Summary")
