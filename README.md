@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 # Customer Churn Prediction System
 
 ## Project Overview
@@ -18,6 +18,4 @@ Python, Pandas, NumPy, Scikit-learn, Streamlit, Plotly
 ```bash
 pip install -r requirements.txt
 streamlit run app.py
-=======
-# Customer-Churn-Prediction-System
->>>>>>> 8e23fe66f17845b637a8438c419f615a1d069b5d
+
