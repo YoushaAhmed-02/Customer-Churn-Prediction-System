@@ -103,8 +103,7 @@ h1,h2,h3,h4,h5,h6,p,label{
     color: #06b6d4 !important;
 }
 
-[data-testid="stExpandSidebarButton"]:hover
-[data-testid="stIconMaterial"]{
+[data-testid="stExpandSidebarButton"]:hover [data-testid="stIconMaterial"]{
     color: #7c3aed !important;
 }
 
@@ -268,7 +267,7 @@ with col2:
         plot_bgcolor="rgba(0,0,0,0)"
     )
 
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig, width="stretch")
 
 
 # DATA TABLE
@@ -276,13 +275,23 @@ st.markdown("---")
 
 st.subheader("📋 Input Summary")
 
-st.dataframe(pd.DataFrame({
-    "Feature":[
-        "Tenure","Monthly Charges","Total Charges",
-        "Contract","Internet Service","Payment Method"
+summary_df = pd.DataFrame({
+    "Feature": [
+        "Tenure",
+        "Monthly Charges",
+        "Total Charges",
+        "Contract",
+        "Internet Service",
+        "Payment Method"
     ],
-    "Value":[
-        tenure, monthly, total,
-        contract, internet, payment
+    "Value": [
+        str(tenure),
+        str(monthly),
+        str(total),
+        str(contract),
+        str(internet),
+        str(payment)
     ]
-}), use_container_width=True)
+})
+
+st.dataframe(summary_df, width="stretch")
