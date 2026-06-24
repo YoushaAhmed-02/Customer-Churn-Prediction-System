@@ -8,7 +8,8 @@ import plotly.express as px
 st.set_page_config(
     page_title="Customer Churn Dashboard",
     page_icon="📊",
-    layout="wide"
+    layout="wide",
+    initial_sidebar_state="expanded"
 )
 
 
@@ -25,14 +26,15 @@ st.markdown("""
     background: linear-gradient(135deg,#0f172a,#111827,#1e293b);
 }
 
+            
 .block-container{
     padding-top: 1rem;
     padding-left: 2rem;
     padding-right: 2rem;
 }
 
-header {
-    visibility: hidden;
+header[data-testid="stHeader"]{
+    background: transparent !important;
 }
 
 .main-header{
@@ -97,9 +99,22 @@ h1,h2,h3,h4,h5,h6,p,label{
     color:white !important;
 }
 
+[data-testid="stIconMaterial"]{
+    color: #06b6d4 !important;
+}
+
+[data-testid="stExpandSidebarButton"]:hover
+[data-testid="stIconMaterial"]{
+    color: #7c3aed !important;
+}
+
+[data-testid="stExpandSidebarButton"]{
+    background: transparent !important;
+}
+            
+
 </style>
 """, unsafe_allow_html=True)
-
 
 # HEADER
 st.markdown("""
